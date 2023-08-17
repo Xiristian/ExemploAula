@@ -2,8 +2,7 @@ package org.example.model;
 
 import java.time.LocalDate;
 
-public class Produto {
-    private Integer id;
+public class Produto extends EntityId {
     private String nome;
     private String descricao;
     private Double precoCompra;
@@ -12,12 +11,18 @@ public class Produto {
     private LocalDate dataPrazo;
     private Status status;
 
-    public Integer getId() {
-        return id;
+    public Produto() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Produto(Long id, String nome, String descricao, Double precoCompra, Double precoVenda, LocalDate dataValidade, LocalDate dataPrazo, Status status) {
+        super(id);
+        this.nome = nome;
+        this.descricao = descricao;
+        this.precoCompra = precoCompra;
+        this.precoVenda = precoVenda;
+        this.dataValidade = dataValidade;
+        this.dataPrazo = dataPrazo;
+        this.status = status;
     }
 
     public String getNome() {
@@ -76,20 +81,6 @@ public class Produto {
     }
 
     public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Produto() {
-    }
-
-    public Produto(Integer id, String nome, String descricao, Double precoCompra, Double precoVenda, LocalDate dataValidade, LocalDate dataPrazo, Status status) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.precoCompra = precoCompra;
-        this.precoVenda = precoVenda;
-        this.dataValidade = dataValidade;
-        this.dataPrazo = dataPrazo;
         this.status = status;
     }
 
