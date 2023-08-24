@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.model.Cliente;
-import org.example.model.FormaPagamento;
-import org.example.model.Fornecedor;
-import org.example.model.Venda;
+import org.example.model.*;
 
 import java.time.LocalDate;
 
@@ -32,6 +29,18 @@ public class Application {
         venda01.setCliente(bruno);
         venda01.setFormaPagamento(FormaPagamento.A_VISTA);
         venda01.setObservacao("Observação 01");
+
+        Produto produto = new Produto("Computador", "I5 8gb");
+        ItemVenda itemVenda = new ItemVenda(produto, 100.00, 1.0, 1.0);
+        venda01.addItemVenda(itemVenda);
+
+        Servico servico = new Servico("Instalação Office", 2.0, 100.00);
+        ItemVenda itemVenda2 = new ItemVenda(servico, 100.00, 1.0, 1.0);
+        venda01.addItemVenda(itemVenda2);
+
+        System.out.println(venda01.getItens());
+        System.out.println("Prod: " + produto.getEstocavel());
+        System.out.println("Serv: " + servico.getEstocavel());
     }
 }
 

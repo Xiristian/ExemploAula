@@ -2,11 +2,9 @@ package org.example.model;
 
 import java.time.LocalDate;
 
-public class Produto extends EntityId {
+public class Produto extends ItemVendavel {
     private String nome;
-    private String descricao;
     private Double precoCompra;
-    private Double precoVenda;
     private LocalDate dataValidade;
     private LocalDate dataPrazo;
     private Status status;
@@ -14,12 +12,17 @@ public class Produto extends EntityId {
     public Produto() {
     }
 
-    public Produto(Long id, String nome, String descricao, Double precoCompra, Double precoVenda, LocalDate dataValidade, LocalDate dataPrazo, Status status) {
-        super(id);
+    public Produto(String nome, String descricao) {
         this.nome = nome;
-        this.descricao = descricao;
+        super.setDescricao(descricao);
+    }
+
+    public Produto(Long id, String nome, String descricao, Double precoCompra, Double precoVenda, LocalDate dataValidade, LocalDate dataPrazo, Status status) {
+        super.setId(id);
+        this.nome = nome;
+        super.setDescricao(descricao);
         this.precoCompra = precoCompra;
-        this.precoVenda = precoVenda;
+        super.setValorUnitario(precoVenda);
         this.dataValidade = dataValidade;
         this.dataPrazo = dataPrazo;
         this.status = status;
@@ -33,14 +36,6 @@ public class Produto extends EntityId {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public Double getPrecoCompra() {
         return precoCompra;
     }
@@ -49,16 +44,6 @@ public class Produto extends EntityId {
         this.precoCompra = precoCompra;
     }
 
-    public Double getPrecoVenda() {
-        return precoVenda;
-    }
-
-    public void setPrecoVenda(Double precoVenda) {
-        this.precoVenda = precoVenda;
-        if (this.calculaMargemDeLucro() < 20.0){
-            System.out.println("A margem de lucro deve ser sempre maior ou igual a 20%");
-        }
-    }
 
     public LocalDate getDataValidade() {
         return dataValidade;
@@ -85,8 +70,16 @@ public class Produto extends EntityId {
     }
 
     public Double calculaMargemDeLucro(){
-        double lucro = precoVenda - precoCompra;
-        double margemLucro = (lucro/precoVenda) * 100;
+        double lucro = super.getValorUnitario() - precoCompra;
+        double margemLucro = (lucro/super.getValorUnitario()) * 100;
         return margemLucro;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "nome='" + nome + '\'' +
+                ", descricao='" + super.getDescricao() + '\'' +
+                '}';
     }
 }

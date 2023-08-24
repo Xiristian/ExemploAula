@@ -1,12 +1,31 @@
 package org.example.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Venda extends EntityId {
+public class Venda extends EntityId implements OperacaoFinanceira {
     private LocalDate dataVenda;
     private Cliente cliente;
     private FormaPagamento formaPagamento;
     private String observacao;
+    private List<ItemVenda> itens = new ArrayList<>();
+
+    public List<ItemVenda> getItens() {
+        return itens;
+    }
+
+    public void addItemVenda(ItemVenda item){
+        this.itens.add(item);
+    }
+
+    public void delItemVenda(ItemVenda item){
+        this.itens.remove(item);
+    }
+
+    public void setItens(List<ItemVenda> itens) {
+        this.itens = itens;
+    }
 
     public Cliente getCliente() {
         return cliente;
@@ -38,5 +57,22 @@ public class Venda extends EntityId {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    @Override
+    public LocalDate getDataOperacao() {
+        return this.getDataVenda();
+    }
+
+    @Override
+    public Double getValorTotalOperacao() {
+        return this.getItens().stream()
+                .mapToDouble(ItemVenda::getValorUnitario)
+                .sum();
+    }
+
+    @Override
+    public TipOperacao getTipoOperacao() {
+        return TipOperacao.CREDITO;
     }
 }

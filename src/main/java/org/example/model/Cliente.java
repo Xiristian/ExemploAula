@@ -4,6 +4,11 @@ public class Cliente extends Pessoa {
     private String cpf;
     private String rg;
 
+    @Override
+    public String getDocumentoPrincipal() {
+        return this.getCpf();
+    }
+
     public Cliente() {
     }
 
@@ -27,5 +32,13 @@ public class Cliente extends Pessoa {
 
     public void setRg(String rg) {
         this.rg = rg;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "cpf='" + cpf + '\'' +
+                ", rg='" + rg + '\'' +
+                '}';
     }
 }

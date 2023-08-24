@@ -4,6 +4,11 @@ public class Fornecedor extends Pessoa{
     private String cnpj;
     private String inscricaoEstadual;
 
+    @Override
+    public String getDocumentoPrincipal() {
+        return this.getCnpj();
+    }
+
     public Fornecedor() {
     }
 
@@ -27,5 +32,13 @@ public class Fornecedor extends Pessoa{
 
     public void setInscricaoEstadual(String inscricaoEstadual) {
         this.inscricaoEstadual = inscricaoEstadual;
+    }
+
+    @Override
+    public String toString() {
+        return "Fornecedor{" +
+                "cnpj='" + cnpj + '\'' +
+                ", inscricaoEstadual='" + inscricaoEstadual + '\'' +
+                '}';
     }
 }
