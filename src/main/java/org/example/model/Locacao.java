@@ -12,6 +12,10 @@ public class Locacao extends EntityId implements OperacaoFinanceira{
     private String observacao;
     private List<ItemLocacao> itens = new ArrayList<>();
 
+    public void addItemLocacao(ItemLocacao item){
+        this.itens.add(item);
+    }
+
     public LocalDate getDataLocacao() {
         return dataLocacao;
     }
@@ -60,6 +64,8 @@ public class Locacao extends EntityId implements OperacaoFinanceira{
         this.itens = itens;
     }
 
+
+
     @Override
     public String toString() {
         return "Locacao{" +
@@ -80,12 +86,12 @@ public class Locacao extends EntityId implements OperacaoFinanceira{
     @Override
     public Double getValorTotalOperacao() {
         return this.getItens().stream()
-                .mapToDouble(ItemLocacao::getValorUnitario)
+                .mapToDouble(ItemLocacao::getValorCalculado)
                 .sum();
     }
 
     @Override
-    public TipOperacao getTipoOperacao() {
-        return TipOperacao.CREDITO;
+    public TipoOperacao getTipoOperacao() {
+        return TipoOperacao.CREDITO;
     }
 }

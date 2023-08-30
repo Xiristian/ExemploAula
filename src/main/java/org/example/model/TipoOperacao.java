@@ -1,6 +1,6 @@
 package org.example.model;
 
-public enum TipOperacao {
+public enum TipoOperacao {
     DEBITO,
     CREDITO
 }

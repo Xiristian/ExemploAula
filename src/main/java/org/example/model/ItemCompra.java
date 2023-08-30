@@ -6,6 +6,14 @@ public class ItemCompra {
     private Double quantidade;
     private Double desconto;
 
+    public ItemCompra(Produto produto, Double valorUnitario, Double quantidade, Double desconto) {
+        this.produto = produto;
+        this.valorUnitario = valorUnitario;
+        this.quantidade = quantidade;
+        this.desconto = desconto;
+    }
+
+
     public Produto getProduto() {
         return produto;
     }
@@ -36,6 +44,12 @@ public class ItemCompra {
 
     public void setDesconto(Double desconto) {
         this.desconto = desconto;
+    }
+
+    public Double getValorCalculado(){
+        double valorTotal = this.getValorUnitario() * this.getQuantidade();
+        double descontoCalculado = valorTotal * (this.getDesconto() / 100);
+        return valorTotal - descontoCalculado;
     }
 
     @Override

@@ -10,6 +10,10 @@ public class Compra extends EntityId implements OperacaoFinanceira{
     private String observacao;
     private List<ItemCompra> itens = new ArrayList<>();
 
+    public void addItemCompra(ItemCompra item){
+        this.itens.add(item);
+    }
+
     public LocalDate getDataCompra() {
         return dataCompra;
     }
@@ -60,12 +64,12 @@ public class Compra extends EntityId implements OperacaoFinanceira{
     @Override
     public Double getValorTotalOperacao() {
         return this.getItens().stream()
-                .mapToDouble(ItemCompra::getValorUnitario)
+                .mapToDouble(ItemCompra::getValorCalculado)
                 .sum();
     }
 
     @Override
-    public TipOperacao getTipoOperacao() {
-        return TipOperacao.DEBITO;
+    public TipoOperacao getTipoOperacao() {
+        return TipoOperacao.DEBITO;
     }
 }
