@@ -75,6 +75,13 @@ public class Produto extends ItemVendavel {
         return margemLucro;
     }
 
+    public void setPrecoVenda(Double precoVenda) throws MargemLucroException {
+        super.setValorUnitario(precoVenda);
+        if (this.calculaMargemDeLucro() < 20.0){
+            throw new MargemLucroException();
+        }
+    }
+
     @Override
     public String toString() {
         return "Produto{" +
