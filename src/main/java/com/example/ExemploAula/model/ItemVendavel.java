@@ -1,8 +1,17 @@
 package com.example.ExemploAula.model;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_item")
 public class ItemVendavel extends EntityId{
+
+    @Column(name = "descricao")
     private String descricao;
+    @Column(name = "valor_unitario")
     private Double valorUnitario;
+    @Column(name = "estocavel")
     private Boolean estocavel;
 
     public Boolean getEstocavel() {

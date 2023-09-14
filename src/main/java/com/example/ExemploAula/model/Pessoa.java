@@ -1,9 +1,17 @@
 package com.example.ExemploAula.model;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Pessoa extends EntityId {
+    @Column(name = "nome")
     private String nome;
+    @Column(name = "telefone")
     private String telefone;
+    @Column(name = "endereco")
     private String endereco;
+    @Column(name = "email")
     private String email;
 
     public abstract String getDocumentoPrincipal();
@@ -11,8 +19,7 @@ public abstract class Pessoa extends EntityId {
     public Pessoa() {
     }
 
-    public Pessoa(Long id, String nome, String telefone, String endereco, String email) {
-        super(id);
+    public Pessoa(String nome, String telefone, String endereco, String email) {
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;

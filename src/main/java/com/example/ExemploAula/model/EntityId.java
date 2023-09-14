@@ -1,13 +1,16 @@
 package com.example.ExemploAula.model;
 
+import javax.persistence.*;
+
+@MappedSuperclass
 public class EntityId {
+
+    @Id
+    @GeneratedValue(strategy =  GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     public EntityId() {
-    }
-
-    public EntityId(Long id) {
-        this.id = id;
     }
 
     public Long getId() {

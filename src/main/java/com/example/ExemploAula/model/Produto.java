@@ -1,12 +1,22 @@
 package com.example.ExemploAula.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@DiscriminatorValue("produto")
 public class Produto extends ItemVendavel {
+
+    @Column(name = "nome", length = 100)
     private String nome;
+    @Column(name = "preco_compra")
     private Double precoCompra;
+    @Column(name = "dt_validade")
     private LocalDate dataValidade;
+    @Column(name = "dt_prazo")
     private LocalDate dataPrazo;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private Status status;
 
     public Produto() {
@@ -17,8 +27,7 @@ public class Produto extends ItemVendavel {
         super.setDescricao(descricao);
     }
 
-    public Produto(Long id, String nome, String descricao, Double precoCompra, Double precoVenda, LocalDate dataValidade, LocalDate dataPrazo, Status status) {
-        super.setId(id);
+    public Produto(String nome, String descricao, Double precoCompra, Double precoVenda, LocalDate dataValidade, LocalDate dataPrazo, Status status) {
         this.nome = nome;
         super.setDescricao(descricao);
         this.precoCompra = precoCompra;

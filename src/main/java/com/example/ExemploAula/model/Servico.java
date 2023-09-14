@@ -1,6 +1,13 @@
 package com.example.ExemploAula.model;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("servico")
 public class Servico extends ItemVendavel{
+    @Column(name = "qtde_horas")
     private Double quantidadeHoras;
 
     public Servico(String descricao, Double quantidadeHoras, Double valor) {

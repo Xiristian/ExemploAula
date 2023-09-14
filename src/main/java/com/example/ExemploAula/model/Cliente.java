@@ -1,7 +1,13 @@
 package com.example.ExemploAula.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class Cliente extends Pessoa {
+    @Column(name = "cpf")
     private String cpf;
+    @Column(name = "rg")
     private String rg;
 
     @Override
@@ -12,8 +18,8 @@ public class Cliente extends Pessoa {
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String telefone, String endereco, String email, String cpf, String rg) {
-        super(id, nome, telefone, endereco, email);
+    public Cliente(String nome, String telefone, String endereco, String email, String cpf, String rg) {
+        super(nome, telefone, endereco, email);
         this.cpf = cpf;
         this.rg = rg;
     }

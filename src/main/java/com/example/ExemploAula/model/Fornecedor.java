@@ -1,7 +1,13 @@
 package com.example.ExemploAula.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class Fornecedor extends Pessoa{
+    @Column(name = "cnpj")
     private String cnpj;
+    @Column(name = "inscricao_estadual")
     private String inscricaoEstadual;
 
     @Override
@@ -12,8 +18,8 @@ public class Fornecedor extends Pessoa{
     public Fornecedor() {
     }
 
-    public Fornecedor(Long id, String nome, String telefone, String endereco, String email, String cnpj, String inscricaoEstadual) {
-        super(id, nome, telefone, endereco, email);
+    public Fornecedor(String nome, String telefone, String endereco, String email, String cnpj, String inscricaoEstadual) {
+        super(nome, telefone, endereco, email);
         this.cnpj = cnpj;
         this.inscricaoEstadual = inscricaoEstadual;
     }
