@@ -16,6 +16,9 @@ public class Servico extends ItemVendavel{
         super.setValorUnitario(valor);
     }
 
+    public Servico() {
+    }
+
     public Double getQuantidadeHoras() {
         return quantidadeHoras;
     }
