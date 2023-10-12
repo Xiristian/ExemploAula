@@ -1,15 +1,14 @@
 package com.example.ExemploAula.health;
 
 import com.example.ExemploAula.model.*;
-import com.example.ExemploAula.repostory.ClienteRepository;
-import com.example.ExemploAula.repostory.ProdutoRepository;
-import com.example.ExemploAula.repostory.ServicoRepository;
-import com.example.ExemploAula.repostory.VendaRepository;
+import com.example.ExemploAula.repository.ClienteRepository;
+import com.example.ExemploAula.repository.ProdutoRepository;
+import com.example.ExemploAula.repository.ServicoRepository;
+import com.example.ExemploAula.repository.VendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.websocket.ClientEndpoint;
 import java.time.LocalDate;
 
 @RestController

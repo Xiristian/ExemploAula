@@ -1,23 +1,44 @@
 package com.example.ExemploAula.service;
 
+
 import com.example.ExemploAula.model.Produto;
-import com.example.ExemploAula.model.QProduto;
-import com.example.ExemploAula.model.Status;
-import com.example.ExemploAula.repostory.ProdutoRepository;
+import com.example.ExemploAula.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
+
 
 @Service
 public class ProdutoService {
 
+
 	@Autowired
 	private ProdutoRepository repository;
 
-	public List<Produto> findProdutosAlugados() {
-		List<Produto> alugados = repository.findAll(QProduto.produto.status.eq(Status.ALUGADO));
-		return alugados;
+
+	public Produto salvar(Produto entity) {
+		return repository.save(entity);
+	}
+
+
+	public List<Produto> buscaTodos() {
+		return repository.findAll();
+	}
+
+
+	public Produto buscaPorId(Long id) {
+		return repository.findById(id).orElse(null);
+	}
+
+
+	public Produto alterar(Produto entity) {
+		return repository.save(entity);
+	}
+
+
+	public void remover(Long id) {
+		repository.deleteById(id);
 	}
 }

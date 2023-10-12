@@ -1,4 +1,4 @@
-package com.example.ExemploAula.repostory;
+package com.example.ExemploAula.repository;
 
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
