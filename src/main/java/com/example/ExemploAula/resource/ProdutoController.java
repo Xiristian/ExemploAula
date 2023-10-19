@@ -1,22 +1,24 @@
 package com.example.ExemploAula.resource;
 
 import com.example.ExemploAula.model.Produto;
+import com.example.ExemploAula.service.NotFoundException;
 import com.example.ExemploAula.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/produtos")
-public class ProdutoController {
+public class ProdutoController extends AbstractController	{
 	@Autowired
 	private ProdutoService service;
 
 	@PostMapping
-	public ResponseEntity create(@RequestBody Produto entity){
+	public ResponseEntity create(@RequestBody @Valid Produto entity){
 		Produto save = service.salvar(entity);
 		return ResponseEntity.created(URI.create("/api/produtos/" + entity.getId())).body(save);
 	}
@@ -37,6 +39,16 @@ public class ProdutoController {
 	public ResponseEntity remove(@PathVariable("id") Long id){
 		service.remover(id);
 		return ResponseEntity.noContent().build();
+	}
+
+	@PutMapping("{id}")
+	public ResponseEntity update(@PathVariable("id") Long id, @RequestBody Produto entity){
+		try {
+			Produto alterado = service.alterar(id, entity);
+			return ResponseEntity.ok().body(alterado);
+		} catch (NotFoundException nfe){
+			return ResponseEntity.noContent().build();
+		}
 	}
 
 }
