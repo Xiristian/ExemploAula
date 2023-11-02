@@ -4,6 +4,9 @@ import com.example.ExemploAula.model.Produto;
 import com.example.ExemploAula.service.NotFoundException;
 import com.example.ExemploAula.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,9 +27,12 @@ public class ProdutoController extends AbstractController	{
 	}
 
 	@GetMapping
-	public ResponseEntity findAll(){
-		List<Produto> produtos = service.buscaTodos();
-		return ResponseEntity.ok(produtos);
+	public ResponseEntity findAll(@RequestParam(required = false) String filter,
+								  @RequestParam(defaultValue = "0") int page,
+								  @RequestParam(defaultValue = "10") int size){
+		Page<Produto> produtos = service.buscaTodos(filter, PageRequest.of(page, size));
+		Page<ProdutoDTO> produtosDTO = ProdutoDTO.fromEntity(produtos);
+		return ResponseEntity.ok(produtosDTO);
 	}
 
 	@GetMapping("{id}")
